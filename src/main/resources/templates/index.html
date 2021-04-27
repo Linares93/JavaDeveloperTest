@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>Employees Information</title> 
+    <!-- Include Bootstrap for styling -->
+  	<link rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<nav class="navbar navbar-light bg-light font-weight-bold">
+  		<a class="navbar-brand" href="#">
+    	<img src="https://i.pinimg.com/originals/5a/39/e4/5a39e4d3ef75159eb3ebf3fcb7124ea7.png" width="30" height="30" class="d-inline-block text-success align-top" alt="">
+    	Company Employee Search System
+  		</a>
+</nav>
+    <form class="form-inline" action="/consult" method="post">
+  		<div class="form-group mb-2">
+    		<label for="staticMessage" class="sr-only"></label>
+    		<input type="text" readonly class="form-control-plaintext" id="employeeid" value="Enter an employee ID">
+  		</div>
+ 		 <div class="form-group mx-sm-3 mb-2">
+    		<label for="inputId" class="sr-only">Employee ID</label>
+    		<input type="number" class="form-control" id="employee_id" th:name="employeeid" placeholder="Employee ID">
+  		</div>
+  		<button type="submit" class="btn btn-success mb-2">Search</button>
+	</form>
+</body>
+</html>

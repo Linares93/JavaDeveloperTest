@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<!-- The same view but with Javascript Changes in data treatment -->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" 
+        content="width=device-width,
+                 initial-scale=1,
+                 shrink-to-fit=no">
+  <title>
+    Employees Information
+  </title>
+  
+  <!-- Include Bootstrap for styling -->
+  <link rel="stylesheet"
+        href=
+"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  
+  <!-- Include the Bootstrap Table CSS
+  for the table -->
+  <link rel="stylesheet" 
+        href=
+"https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css">
+</head>
+<body>
+  <div class="container">
+    <h1 class="text text-success text-center ">
+      Employeees Information Table
+    </h1>
+    <h6 class="text text-success text-center">
+      JSON Parsed to a Table
+    </h6>
+      <table class="table-striped border-success">
+        <thead>
+          <tr>
+            <th data-field="id">
+              <span class="text-success">
+                Employee ID
+              </span>
+            </th>
+            <th data-field="employee_name">
+              <span class="text-success">
+                Employee Name 
+              </span>
+            </th>
+            <th data-field="employee_salary">
+              <span class="text-success">
+                Employee Salary 
+              </span>
+            </th>
+            <th data-field="employee_age">
+              <span class="text-success">
+                Employee Age 
+              </span>
+            </th>
+            <th data-field="profile_image">
+              <span class="text-success">
+                Profile Image
+              </span>
+            </th>
+            <th data-field="employee_anual">
+              <span class="text-success">
+                Employee Anual Salary
+              </span>
+            </th>
+          </tr>
+        </thead>
+      </table>
+  </div>
+  
+  <!-- Include jQuery and other required
+  files for Bootstrap -->
+  <script src=
+"https://code.jquery.com/jquery-3.3.1.min.js">
+  </script>
+  <script src=
+"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js">
+  </script>
+  <script src=
+"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
+  </script>
+  
+  <!-- Include the JavaScript file
+  for Bootstrap table -->
+  <script src=
+"https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js">
+  </script>
+ <!-- Script to get data and pass to Bootstrap table -->
+  <script type="text/javascript" th:inline="javascript">
+    $(document).ready(function () {
+  
+      // Use the given data to create 
+      // the table and display it
+      $('table').bootstrapTable({
+        data: mydata_data
+      });
+    });
+    // Specify the JSON data to be displayed response
+    //Sent response is parsed and just data array is obtained
+    var mydata = /*[[${response}]]*/'default';
+    var mydata_parse=JSON.parse(mydata);
+    var mydata_data=mydata_parse.data;
+    //Sent response2 is parsed to be used in salary JSON insertion
+    var mydata2= /*[[${response2}]]*/'default';
+    var mydata2_parse=JSON.parse(mydata2);
+    //Loop to insert a new key:value in every element of the object array
+    for (let i = 0; i < mydata2_parse.length; i++) {
+		mydata_data[i].employee_anual=mydata2_parse[i];
+	}
+  </script>
+</body>
+</html>
